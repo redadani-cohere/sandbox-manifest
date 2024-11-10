@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-platform-deployment
+  labels:
+    app: core-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core-platform
+  template:
+    metadata:
+      labels:
+        app: core-platform
+    spec:
+      containers:
+        - name: leader
+          image: "docker.io/nginx:latest"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 8888

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qm-service-deployment
+  labels:
+    app: qm-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qm-service
+  template:
+    metadata:
+      labels:
+        app: qm-service
+    spec:
+      containers:
+        - name: leader
+          image: "docker.io/nginx:latest"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 8889
